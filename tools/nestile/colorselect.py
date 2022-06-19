@@ -12,13 +12,12 @@ class ColorSelect(Dialog):
     def body(self, main):
         self._color = StringVar()
         self.selection = None
-        for i,color in enumerate(CFG["colorPalette"]):
-            x = i % int(CFG["paletteDisplayWidth"])
-            y = i // int(CFG["paletteDisplayWidth"])
-            Radiobutton(main, variable=self._color, value=color, fg="#000000",
-                        bg=color, activebackground=color,
-                        activeforeground="#000000", selectcolor="#ffffff"
-                        ).grid(column=x, row=y)
+        for j,color_row in enumerate(CFG["colorPalette"]):
+            for i,color in enumerate(color_row):
+                Radiobutton(main, variable=self._color, value=color, fg="#000000",
+                            bg=color, activebackground=color,
+                            activeforeground="#000000", selectcolor="#ffffff"
+                            ).grid(column=i, row=j)
     def apply(self):
         self.selection = self._color.get()
 
