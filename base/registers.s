@@ -1,25 +1,24 @@
 ; PPU Registers
-PPUCTRL          = $2000        ; PPU Control flags
-PPUCTRL_V_MASK   = %10000000    ; 
-PPUCTRL_P_MASK   = %01000000
-PPUCTRL_H_MASK   = %00100000
-PPUCTRL_B_MASK   = %00010000
-PPUCTRL_S_MASK   = %00001000
-PPUCTRL_I_MASK   = %00000100
-PPUCTRL_NN_MASK  = %00000011
+PPUCTRL          = $2000        ; PPU Control flags (Write)
+PPUCTRL_V_MASK   = %10000000    ; NMI at VBlank Enable
+PPUCTRL_H_MASK   = %00100000    ; Sprite size (0=>8x8, 1=>16x16)
+PPUCTRL_B_MASK   = %00010000    ; BG Pattern Address (0=>$0000, 1=>$1000)
+PPUCTRL_S_MASK   = %00001000    ; 8x8 sprite pattern address (0=>$0000, 1=>$1000)
+PPUCTRL_I_MASK   = %00000100    ; VRAM Address increment (0=>1, 1=>32)
+PPUCTRL_NN_MASK  = %00000011    ; Nametable Page Select (0=>$2000, 1=>$2400, 2=>$2800, 3=>$2c00)
 
-PPUMASK          = $2001
-PPUMASK_BGR_MASK = %11100000
-PPUMASK_SE_MASK  = %00010000
-PPUMASK_BE_MASK  = $00001000
-PPUMASK_LCE_MASK = $00000100
-PPUMASK_RCE_MASK = $00000010
-PPUMASK_G_MASK   = $00000001
+PPUMASK          = $2001        ; More PPU Control flags (Write)
+PPUMASK_BGR_MASK = %11100000    ; RGB Emphasis (bit 7 => blue, bit 6 => green, bit 5 => red)
+PPUMASK_SE_MASK  = %00010000    ; Sprite Enable
+PPUMASK_BE_MASK  = $00001000    ; Background Enable
+PPUMASK_LCE_MASK = $00000100    ; Show Sprites in leftmost 8 pixels
+PPUMASK_RCE_MASK = $00000010    ; Show Sprites in rightmost 8 pixels
+PPUMASK_G_MASK   = $00000001    ; Greyscale (0=>Color, 1=>Greyscale)
 
-PPUSTATUS             = $2002
-PPUSTATUS_VBLANK_MASK = $10000000
-PPUSTATUS_SZH_MASK    = $01000000
-PPUSTATUS_SOF_MASK    = $00100000
+PPUSTATUS             = $2002       ; PPU Status plags (Read)
+PPUSTATUS_VBLANK_MASK = $10000000   ; VBlank has started (reset after read)
+PPUSTATUS_SZH_MASK    = $01000000   ; Sprite 0 intersects background
+PPUSTATUS_SOF_MASK    = $00100000   ; Sprite overflow
 
 OAMADDR = $2003
 
@@ -27,11 +26,11 @@ OAMDATA = $2004
 
 PPUSCROLL = $2005
 
-PPUADDR   = $2006
+PPUADDR = $2006
 
-PPUDATA   = $2007
+PPUDATA = $2007
 
-OAMDMA    = $4014
+OAMDMA = $4014
 
 
 ; APU Registers

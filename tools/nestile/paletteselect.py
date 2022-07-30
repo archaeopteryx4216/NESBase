@@ -17,19 +17,23 @@ class PaletteSelect(tk.Frame):
         self._cvar_1 = cvar_1
         self._cvar_2 = cvar_2
         self._cvar_3 = cvar_3
+        # Clear Color vars to 0x000000
+        self._cvar_1.set("#000000")
+        self._cvar_2.set("#000000")
+        self._cvar_3.set("#000000")
         # Pack ColorSelect buttons onto the frame
         tk.Label(self, text="Color 1").grid(row=0, column=0)
         self._csel_1 = tk.Button(self, width="10")
-        self._csel_1.configure(command=lambda cvar=self._cvar_1, csel=self._csel_1: self._setcolor(cvar, csel))
-        self._csel_1.grid(row=0, column=1)
+        self._csel_1.configure(bg=self._cvar_1.get() ,command=lambda cvar=self._cvar_1, csel=self._csel_1: self._setcolor(cvar, csel))
+        self._csel_1.grid(row=0, column=1, sticky=tk.E)
         tk.Label(self, text="Color 2").grid(row=1, column=0)
         self._csel_2 = tk.Button(self, width="10")
-        self._csel_2.configure(command=lambda cvar=self._cvar_2, csel=self._csel_2: self._setcolor(cvar, csel))
-        self._csel_2.grid(row=1, column=1)
+        self._csel_2.configure(bg=self._cvar_2.get() ,command=lambda cvar=self._cvar_2, csel=self._csel_2: self._setcolor(cvar, csel))
+        self._csel_2.grid(row=1, column=1, sticky=tk.E)
         tk.Label(self, text="Color 3").grid(row=2, column=0)
         self._csel_3 = tk.Button(self, width="10")
-        self._csel_3.configure(command=lambda cvar=self._cvar_3, csel=self._csel_3: self._setcolor(cvar, csel))
-        self._csel_3.grid(row=2, column=1)
+        self._csel_3.configure(bg=self._cvar_3.get() ,command=lambda cvar=self._cvar_3, csel=self._csel_3: self._setcolor(cvar, csel))
+        self._csel_3.grid(row=2, column=1, sticky=tk.E)
 
 if __name__ == "__main__":
     def test():
